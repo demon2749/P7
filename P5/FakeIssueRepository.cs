@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace P6
 {
@@ -14,27 +17,89 @@ namespace P6
 
         private string ValidateIssue(Issue issue)
         {
-            throw new NotImplementedException();
+            if (issue.Title == "" || issue.Title == null)
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+
+            if (issue.DiscoveryDate == null)
+            {
+                return EMPTY_DISCOVERY_DATETIME_ERROR;
+            }
+
+            if (DateTime.Compare(issue.DiscoveryDate, System.DateTime.Now) > 0)
+            {
+                return FUTURE_DISCOVERY_DATETIME_ERROR;
+            }
+
+            if (issue.Discoverer == "" || issue.Discoverer == null)
+            {
+                return EMPTY_DISCOVERER_ERROR;
+            }
+
+            return NO_ERROR;
         }
 
         private bool IsDuplicate(string title)
         {
-            throw new NotImplementedException();
+            foreach(Issue issue in _Issues)
+            {
+                if(issue.Title == title)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         // Interface Implementation:
 
         public string Add(Issue issue)
         {
-            throw new NotImplementedException();
+            string check = ValidateIssue(issue);
+            if (check == NO_ERROR && IsDuplicate(issue.Title) == false)
+            {
+                _Issues.Add(issue);
+                return NO_ERROR;
+            }
+            else
+            {
+                if (IsDuplicate(issue.Title) == true)
+                {
+                    return "Titles must be unique across all projects.";
+                }
+                else
+                {
+                    return check;
+                }
+            }
         }
         public List<Issue> GetAll(int ProjectId)
         {
-            throw new NotImplementedException();
+            List<Issue> ListOfIssues = new List<Issue>();
+
+            foreach(Issue issue in _Issues)
+            {
+                if(issue.ProjectId == ProjectId)
+                {
+                    ListOfIssues.Add(issue);
+                }
+            }
+
+            return ListOfIssues;
         }
         public bool Remove(Issue issue)
         {
-            throw new NotImplementedException();
+            foreach (Issue current in _Issues)
+            {
+                if (issue == current)
+                {
+                    _Issues.Remove(issue);
+                    return true;
+                }
+            }
+
+            return false;
         }
         public string Modify(Issue issue)
         {
@@ -42,7 +107,16 @@ namespace P6
         }
         public int GetTotalNumberOfIssues(int ProjectId)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach(Issue issue in _Issues)
+            {
+                if(issue.ProjectId == ProjectId)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
         public List<string> GetIssuesByMonth(int ProjectId)
         {
@@ -54,8 +128,16 @@ namespace P6
         }
         public Issue GetIssueById(int Id)
         {
-            throw new NotImplementedException();
-        }
 
+            foreach (Issue issue in _Issues)
+            {
+                if(issue.Id == Id)
+                {
+                    return issue;
+                }
+            }
+
+            return null;
+        }
     }
 }
