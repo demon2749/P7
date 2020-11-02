@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace P5
+namespace P6
 {
     public class FakeAppUserRepository : IAppUserRepository
     {
@@ -10,13 +10,13 @@ namespace P5
         {
             // A temporary dictionary to fake a database
             _AppUsers = new Dictionary<string, AppUser>();
-            _AppUsers.Add("dave", new AppUser
+            _AppUsers.Add("DSU", new AppUser
             {
-                UserName = "dave",
-                Password = "go",
-                FirstName = "Dave",
-                LastName = "Bishop",
-                EmailAddress = "david.b.bishop@gmail.com",
+                UserName = "DSU",
+                Password = "Password1!",
+                FirstName = "Dakota State",
+                LastName = "University",
+                EmailAddress = "email@dsu.edu",
                 IsAuthenticated = false
             });
         }
