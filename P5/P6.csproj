@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9AD3E907-2E4F-4F8D-A562-0C7C92BFC8F1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Builder</RootNamespace>
+    <RootNamespace>P6</RootNamespace>
     <AssemblyName>Builder</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -61,9 +61,13 @@
   <ItemGroup>
     <Compile Include="AppUser.cs" />
     <Compile Include="FakeAppUserRepository.cs" />
+    <Compile Include="FakeIssueRepository.cs" />
+    <Compile Include="FakeIssueStatusRepository.cs" />
     <Compile Include="FakePreferenceRepository.cs" />
     <Compile Include="FakeProjectRepository.cs" />
     <Compile Include="IAppUserRepository.cs" />
+    <Compile Include="IIssueRepository.cs" />
+    <Compile Include="IIssueStatusRepository.cs" />
     <Compile Include="IPreferenceRepository.cs" />
     <Compile Include="IProjectRepository.cs" />
     <Compile Include="FormLogin.cs">
@@ -84,6 +88,8 @@
     <Compile Include="FormModifyProject.Designer.cs">
       <DependentUpon>FormModifyProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Issue.cs" />
+    <Compile Include="IssueStatus.cs" />
     <Compile Include="Preference.cs" />
     <Compile Include="FormCreateProject.cs">
       <SubType>Form</SubType>
@@ -132,6 +138,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FakeIssueRepository.datasource" />
