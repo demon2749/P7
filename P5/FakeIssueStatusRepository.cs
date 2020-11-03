@@ -36,24 +36,24 @@ namespace P6
         {
             return _IssueStatuses;
         }
-        public int GetIdByStatus(string value)
+        public int? GetIdByStatus(string value)
         {
-            foreach(IssueStatus ish in _IssueStatuses)
+            foreach(IssueStatus issueStatus in _IssueStatuses)
             {
-                if (value == ish.Value)
+                if (value == issueStatus.Value)
                 {
-                    return ish.Id;
+                    return issueStatus.Id;
                 }
             }
             return null;
         }
         public string GetValueById(int Id)
         {
-            foreach(IssueStatus ish in _IssueStatuses)
+            foreach(IssueStatus issueStatus in _IssueStatuses)
             {
-                if(Id == ish.Id)
+                if(Id == issueStatus.Id)
                 {
-                    return ish.Value;
+                    return issueStatus.Value;
                 }
             }
             return null;

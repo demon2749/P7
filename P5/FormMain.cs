@@ -5,6 +5,8 @@ namespace P6
     public partial class FormMain : Form
     {
         private AppUser _CurrentAppUser = new AppUser();
+        private int selectedProjectId;
+        private string selectedProject;
         public FormMain()
         {
             InitializeComponent();
@@ -52,7 +54,6 @@ namespace P6
 
         private string selectAProject()
         {
-            string selectedProject = "";
             FormSelectProject form = new FormSelectProject();
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
@@ -61,15 +62,15 @@ namespace P6
                 preferenceRepository.SetPreference(_CurrentAppUser.UserName,
                                                    FakePreferenceRepository.PREFERENCE_PROJECT_NAME,
                                                    form._SelectedProjectName);
-                int selectedProjectId = form._SelectedProjectId;
+                this.selectedProjectId = form._SelectedProjectId;
                 preferenceRepository.SetPreference(_CurrentAppUser.UserName,
                                                    FakePreferenceRepository.PREFERENCE_PROJECT_ID,
                                                    selectedProjectId.ToString());
                 this.Text = "Main - " + form._SelectedProjectName;
-                selectedProject = form._SelectedProjectName;
+                this.selectedProject = form._SelectedProjectName;
             }
             form.Dispose();
-            return selectedProject;
+            return this.selectedProject;
         }
 
         private void preferencesModifyProjectToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -84,6 +85,29 @@ namespace P6
             FormRemoveProject form = new FormRemoveProject(_CurrentAppUser);
             form.ShowDialog();
             form.Dispose();
+        }
+
+        private void issuesRecordToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void issuesDashboardToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FakeIssueRepository fakeIssueRepository = new FakeIssueRepository();
+            FormIssueDashboard form = new FormIssueDashboard(fakeIssueRepository, this.selectedProjectId);
+            form.ShowDialog();
+            form.Dispose();
+        }
+
+        private void issuesModifyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void issuesRemoveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

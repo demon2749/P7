@@ -19,6 +19,15 @@ namespace P6
                 EmailAddress = "email@dsu.edu",
                 IsAuthenticated = false
             });
+            _AppUsers.Add("a", new AppUser
+            {
+                UserName = "a",
+                Password = "a",
+                FirstName = "AAA",
+                LastName = "AAAA",
+                EmailAddress = "AA@AA.AAA",
+                IsAuthenticated = false
+            });
         }
         public bool Login(string UserName, string givenPassword)
         {
