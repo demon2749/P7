@@ -13,7 +13,31 @@ namespace P6
         public const string EMPTY_DISCOVERY_DATETIME_ERROR = "Must select a Discovery Date/Time.";
         public const string FUTURE_DISCOVERY_DATETIME_ERROR = "Issues can't be from the future.";
         public const string EMPTY_DISCOVERER_ERROR = "A Discoverer is required.";
-        private static List<Issue> _Issues = new List<Issue>();
+        private static List<Issue> _Issues = new List<Issue>()
+        {
+            new Issue()
+            {
+                Id = 1,
+                ProjectId = 1,
+                Title = "Title",
+                DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
+                Discoverer = "First Last",
+                InitialDescription = "Super duper super bug",
+                Component = "what is this?",
+                IssueStatusId = 1,
+            },
+            new Issue()
+            {
+                Id = 2,
+                ProjectId = 1,
+                Title = "Title",
+                DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
+                Discoverer = "First Last",
+                InitialDescription = "Super duper super bug",
+                Component = "what is this?",
+                IssueStatusId = 1,
+            }
+        };
 
         private string ValidateIssue(Issue issue)
         {

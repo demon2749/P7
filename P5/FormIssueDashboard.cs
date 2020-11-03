@@ -24,46 +24,63 @@ namespace P6
 
         private void FormIssueDashboard_Load(object sender, EventArgs e)
         {
+            this.labelIssueCount.Text = _fakeIssueRepository.GetTotalNumberOfIssues(selectedProjectId).ToString();
             List < Issue > issues = this._fakeIssueRepository.GetAll(selectedProjectId);
 
-/*            issues.Sort((a, b) => { 
-                if(a.DiscoveryDate.Year == b.DiscoveryDate.Year)
+            Dictionary<long, int> issuesByMonth = new Dictionary<long, int>();
+            foreach (Issue issue in issues)
+            {
+                DateTime date = new DateTime(issue.DiscoveryDate.Year, issue.DiscoveryDate.Month, 1, 1, 1, 1);
+                long integerDate = date.Ticks;
+                int discoveries = 1;
+                if (!issuesByMonth.ContainsKey(integerDate))
                 {
-                    if(a.DiscoveryDate.Month == b.DiscoveryDate.Month)
-                    {
-                        return 0;
-                    }
-
-                    return a.DiscoveryDate.Month > b.DiscoveryDate.Month ? 1 : -1;
+                    issuesByMonth.Add(integerDate, discoveries);
                 }
-                return a.DiscoveryDate.Year > b.DiscoveryDate.Year ? 1 : -1;
-            });*/
+                else
+                {
+                    discoveries++;
+                    issuesByMonth[integerDate] += 1;
+
+                }
+            }
 
             int i = 0;
-            foreach(Issue issue in issues)
+            foreach (KeyValuePair<long, int> pair in issuesByMonth)
             {
                 i++;
-                this.listBoxIssuesByMonth.Items.Add($"{issue.DiscoveryDate.Year} - {i}: {issue.DiscoveryDate.Month}");
+                DateTime date = new DateTime(pair.Key);
+                this.listBoxIssuesByMonth.Items.Add($"{date.Year} - {pair.Value} : {date.Month}");
             }
+
 
             Dictionary<string, int> issuesByDiscoverer = new Dictionary<string, int>();
             foreach (Issue issue in issues)
             {
                 int discoveries = 0;
-                if (issuesByDiscoverer.ContainsKey(issue.Discoverer))
+                if (!issuesByDiscoverer.ContainsKey(issue.Discoverer))
                 {
-                    issuesByDiscoverer.TryGetValue(issue.Discoverer, out discoveries);
+                    issuesByDiscoverer.Add(issue.Discoverer, discoveries);
                 }
-                discoveries++;
-                issuesByDiscoverer.Add(issue.Discoverer, discoveries);
+                else
+                {
+                    discoveries++;
+                    issuesByDiscoverer[issue.Discoverer] += 1;
+
+                }
             }
 
             foreach(KeyValuePair<string, int> pair in issuesByDiscoverer)
             {
-                this.listBoxIssuesByMonth.Items.Add($"{pair.Key} - {pair.Value}");
+                string[] name = pair.Key.Split(' ');
+                this.listBoxIssuesByDiscoverer.Items.Add($"{name[1]}, {name[0]} - {pair.Value}");
             }
 
+        }
 
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
