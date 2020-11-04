@@ -12,14 +12,20 @@ namespace P6
 {
     public partial class FormIssueModify : Form
     {
-        public FormIssueModify()
+        FakeIssueStatusRepository _FakeIssueStatusRepository = new FakeIssueStatusRepository();
+        FakeIssueRepository _FakeIssueRepository = new FakeIssueRepository();
+        FakeAppUserRepository _FakeAppUserRepository = new FakeAppUserRepository();
+        private int currentIssueId;
+
+        public FormIssueModify(int Id)
         {
             InitializeComponent();
+            currentIssueId = Id;
         }
 
         private void FormIssueModify_Load(object sender, EventArgs e)
         {
-
+            textBoxId.Text = currentIssueId.ToString();
         }
     }
 }
