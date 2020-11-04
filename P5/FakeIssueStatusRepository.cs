@@ -36,7 +36,7 @@ namespace P6
         {
             return _IssueStatuses;
         }
-        public int? GetIdByStatus(string value)
+        public int GetIdByStatus(string value)
         {
             foreach(IssueStatus issueStatus in _IssueStatuses)
             {
@@ -45,7 +45,7 @@ namespace P6
                     return issueStatus.Id;
                 }
             }
-            return null;
+            return 0;//should never happen.
         }
         public string GetValueById(int Id)
         {

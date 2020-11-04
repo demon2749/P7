@@ -28,138 +28,222 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiscoveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discoverer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InitialDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonSelectIssue = new System.Windows.Forms.Button();
+            this.textBoxComponent = new System.Windows.Forms.TextBox();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.buttonCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.buttonSubmit = new System.Windows.Forms.Button();
+            this.textBoxDescription = new System.Windows.Forms.RichTextBox();
+            this.dropDownStatus = new System.Windows.Forms.ComboBox();
+            this.dropDownDiscoverer = new System.Windows.Forms.ComboBox();
+            this.datePickerDiscoveryDate = new System.Windows.Forms.DateTimePicker();
+            this.textBoxId = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // textBoxComponent
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Title,
-            this.DiscoveryDate,
-            this.Discoverer,
-            this.InitialDescription,
-            this.Component,
-            this.Status});
-            this.dataGridView1.Location = new System.Drawing.Point(56, 58);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1235, 489);
-            this.dataGridView1.TabIndex = 0;
+            this.textBoxComponent.Location = new System.Drawing.Point(125, 150);
+            this.textBoxComponent.Name = "textBoxComponent";
+            this.textBoxComponent.Size = new System.Drawing.Size(320, 20);
+            this.textBoxComponent.TabIndex = 33;
             // 
-            // Id
+            // textBoxTitle
             // 
-            this.Id.FillWeight = 10F;
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 60;
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Title";
-            this.Title.MinimumWidth = 8;
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            this.Title.Width = 280;
-            // 
-            // DiscoveryDate
-            // 
-            this.DiscoveryDate.HeaderText = "DiscoveryDate";
-            this.DiscoveryDate.MinimumWidth = 8;
-            this.DiscoveryDate.Name = "DiscoveryDate";
-            this.DiscoveryDate.ReadOnly = true;
-            this.DiscoveryDate.Width = 220;
-            // 
-            // Discoverer
-            // 
-            this.Discoverer.HeaderText = "Discoverer";
-            this.Discoverer.MinimumWidth = 8;
-            this.Discoverer.Name = "Discoverer";
-            this.Discoverer.ReadOnly = true;
-            this.Discoverer.Width = 150;
-            // 
-            // InitialDescription
-            // 
-            this.InitialDescription.HeaderText = "InitialDescription";
-            this.InitialDescription.MinimumWidth = 8;
-            this.InitialDescription.Name = "InitialDescription";
-            this.InitialDescription.ReadOnly = true;
-            this.InitialDescription.Width = 150;
-            // 
-            // Component
-            // 
-            this.Component.HeaderText = "Component";
-            this.Component.MinimumWidth = 8;
-            this.Component.Name = "Component";
-            this.Component.ReadOnly = true;
-            this.Component.Width = 150;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 8;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Width = 150;
-            // 
-            // buttonSelectIssue
-            // 
-            this.buttonSelectIssue.Location = new System.Drawing.Point(1133, 631);
-            this.buttonSelectIssue.Name = "buttonSelectIssue";
-            this.buttonSelectIssue.Size = new System.Drawing.Size(158, 29);
-            this.buttonSelectIssue.TabIndex = 1;
-            this.buttonSelectIssue.Text = "Select Issue";
-            this.buttonSelectIssue.UseVisualStyleBackColor = true;
+            this.textBoxTitle.Location = new System.Drawing.Point(125, 43);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(320, 20);
+            this.textBoxTitle.TabIndex = 32;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(893, 631);
+            this.buttonCancel.Location = new System.Drawing.Point(196, 480);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(158, 29);
-            this.buttonCancel.TabIndex = 2;
+            this.buttonCancel.Size = new System.Drawing.Size(104, 24);
+            this.buttonCancel.TabIndex = 31;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // buttonSubmit
+            // 
+            this.buttonSubmit.Location = new System.Drawing.Point(341, 480);
+            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSubmit.Name = "buttonSubmit";
+            this.buttonSubmit.Size = new System.Drawing.Size(104, 24);
+            this.buttonSubmit.TabIndex = 30;
+            this.buttonSubmit.Text = "Create Issue";
+            this.buttonSubmit.UseVisualStyleBackColor = true;
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Location = new System.Drawing.Point(125, 231);
+            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(321, 220);
+            this.textBoxDescription.TabIndex = 29;
+            this.textBoxDescription.Text = "";
+            // 
+            // dropDownStatus
+            // 
+            this.dropDownStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dropDownStatus.FormattingEnabled = true;
+            this.dropDownStatus.Location = new System.Drawing.Point(125, 185);
+            this.dropDownStatus.Margin = new System.Windows.Forms.Padding(2);
+            this.dropDownStatus.Name = "dropDownStatus";
+            this.dropDownStatus.Size = new System.Drawing.Size(321, 21);
+            this.dropDownStatus.TabIndex = 28;
+            // 
+            // dropDownDiscoverer
+            // 
+            this.dropDownDiscoverer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dropDownDiscoverer.FormattingEnabled = true;
+            this.dropDownDiscoverer.Location = new System.Drawing.Point(125, 114);
+            this.dropDownDiscoverer.Margin = new System.Windows.Forms.Padding(2);
+            this.dropDownDiscoverer.Name = "dropDownDiscoverer";
+            this.dropDownDiscoverer.Size = new System.Drawing.Size(321, 21);
+            this.dropDownDiscoverer.TabIndex = 27;
+            // 
+            // datePickerDiscoveryDate
+            // 
+            this.datePickerDiscoveryDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.datePickerDiscoveryDate.Location = new System.Drawing.Point(125, 74);
+            this.datePickerDiscoveryDate.Margin = new System.Windows.Forms.Padding(2);
+            this.datePickerDiscoveryDate.Name = "datePickerDiscoveryDate";
+            this.datePickerDiscoveryDate.Size = new System.Drawing.Size(321, 20);
+            this.datePickerDiscoveryDate.TabIndex = 26;
+            // 
+            // textBoxId
+            // 
+            this.textBoxId.Enabled = false;
+            this.textBoxId.Location = new System.Drawing.Point(125, 11);
+            this.textBoxId.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxId.Name = "textBoxId";
+            this.textBoxId.ReadOnly = true;
+            this.textBoxId.Size = new System.Drawing.Size(68, 20);
+            this.textBoxId.TabIndex = 25;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(69, 46);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Title:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 77);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Discovery Date:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(38, 116);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Discoverer:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(35, 153);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Component";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(57, 187);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Status:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 233);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Initial Description";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(79, 13);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(19, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Id:";
+            // 
             // FormIssueModify
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1337, 751);
+            this.ClientSize = new System.Drawing.Size(461, 521);
+            this.Controls.Add(this.textBoxComponent);
+            this.Controls.Add(this.textBoxTitle);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSelectIssue);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.buttonSubmit);
+            this.Controls.Add(this.textBoxDescription);
+            this.Controls.Add(this.dropDownStatus);
+            this.Controls.Add(this.dropDownDiscoverer);
+            this.Controls.Add(this.datePickerDiscoveryDate);
+            this.Controls.Add(this.textBoxId);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Name = "FormIssueModify";
-            this.Text = "FormIssueModify";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Text = "Modify Issue";
+            this.Load += new System.EventHandler(this.FormIssueModify_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DiscoveryDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Discoverer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InitialDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Component;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.Button buttonSelectIssue;
+        private System.Windows.Forms.TextBox textBoxComponent;
+        private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSubmit;
+        private System.Windows.Forms.RichTextBox textBoxDescription;
+        private System.Windows.Forms.ComboBox dropDownStatus;
+        public System.Windows.Forms.ComboBox dropDownDiscoverer;
+        private System.Windows.Forms.DateTimePicker datePickerDiscoveryDate;
+        private System.Windows.Forms.TextBox textBoxId;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

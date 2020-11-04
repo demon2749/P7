@@ -25,55 +25,17 @@ namespace P6
         private void FormIssueDashboard_Load(object sender, EventArgs e)
         {
             this.labelIssueCount.Text = _fakeIssueRepository.GetTotalNumberOfIssues(selectedProjectId).ToString();
-            List < Issue > issues = this._fakeIssueRepository.GetAll(selectedProjectId);
 
-            Dictionary<long, int> issuesByMonth = new Dictionary<long, int>();
-            foreach (Issue issue in issues)
+            List<string> byMonth = _fakeIssueRepository.GetIssuesByMonth(selectedProjectId);
+            foreach(string entry in byMonth)
             {
-                DateTime date = new DateTime(issue.DiscoveryDate.Year, issue.DiscoveryDate.Month, 1, 1, 1, 1);
-                long integerDate = date.Ticks;
-                int discoveries = 1;
-                if (!issuesByMonth.ContainsKey(integerDate))
-                {
-                    issuesByMonth.Add(integerDate, discoveries);
-                }
-                else
-                {
-                    discoveries++;
-                    issuesByMonth[integerDate] += 1;
-
-                }
+                this.listBoxIssuesByMonth.Items.Add(entry);
             }
 
-            int i = 0;
-            foreach (KeyValuePair<long, int> pair in issuesByMonth)
+            List<string> byDiscoverer = _fakeIssueRepository.GetIssuesByDiscoverer(selectedProjectId);
+            foreach (string entry in byDiscoverer)
             {
-                i++;
-                DateTime date = new DateTime(pair.Key);
-                this.listBoxIssuesByMonth.Items.Add($"{date.Year} - {pair.Value} : {date.Month}");
-            }
-
-
-            Dictionary<string, int> issuesByDiscoverer = new Dictionary<string, int>();
-            foreach (Issue issue in issues)
-            {
-                int discoveries = 0;
-                if (!issuesByDiscoverer.ContainsKey(issue.Discoverer))
-                {
-                    issuesByDiscoverer.Add(issue.Discoverer, discoveries);
-                }
-                else
-                {
-                    discoveries++;
-                    issuesByDiscoverer[issue.Discoverer] += 1;
-
-                }
-            }
-
-            foreach(KeyValuePair<string, int> pair in issuesByDiscoverer)
-            {
-                string[] name = pair.Key.Split(' ');
-                this.listBoxIssuesByDiscoverer.Items.Add($"{name[1]}, {name[0]} - {pair.Value}");
+                this.listBoxIssuesByDiscoverer.Items.Add(entry);
             }
 
         }

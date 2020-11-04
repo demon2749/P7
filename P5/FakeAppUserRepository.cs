@@ -14,8 +14,8 @@ namespace P6
             {
                 UserName = "DSU",
                 Password = "Password1!",
-                FirstName = "Dakota State",
-                LastName = "University",
+                FirstName = "First",
+                LastName = "Last",
                 EmailAddress = "email@dsu.edu",
                 IsAuthenticated = false
             });

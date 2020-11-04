@@ -16,5 +16,10 @@ namespace P6
         {
             InitializeComponent();
         }
+
+        private void FormIssueModify_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

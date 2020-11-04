@@ -30,7 +30,18 @@ namespace P6
             {
                 Id = 2,
                 ProjectId = 1,
-                Title = "Title",
+                Title = "Big bug",
+                DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
+                Discoverer = "John Stampe",
+                InitialDescription = "Super duper super bug",
+                Component = "what is this?",
+                IssueStatusId = 1,
+            },
+            new Issue()
+            {
+                Id = 3,
+                ProjectId = 2,
+                Title = "program crash",
                 DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
                 Discoverer = "First Last",
                 InitialDescription = "Super duper super bug",
@@ -102,11 +113,18 @@ namespace P6
         {
             List<Issue> ListOfIssues = new List<Issue>();
 
-            foreach(Issue issue in _Issues)
+            if (ProjectId == 0)
             {
-                if(issue.ProjectId == ProjectId)
+                return _Issues;
+            }
+            else
+            {
+                foreach (Issue issue in _Issues)
                 {
-                    ListOfIssues.Add(issue);
+                    if (issue.ProjectId == ProjectId)
+                    {
+                        ListOfIssues.Add(issue);
+                    }
                 }
             }
 
@@ -116,7 +134,7 @@ namespace P6
         {
             foreach (Issue current in _Issues)
             {
-                if (issue == current)
+                if (issue.Id == current.Id)
                 {
                     _Issues.Remove(issue);
                     return true;
@@ -127,7 +145,17 @@ namespace P6
         }
         public string Modify(Issue issue)
         {
-            throw new NotImplementedException();
+            if (ValidateIssue(issue) == NO_ERROR)
+            {
+                foreach (Issue ish in _Issues)
+                {
+                    if (issue.Id == ish.Id)
+                    {
+                        Remove(GetIssueById(issue.Id));
+                    }
+                }
+            }
+            return Add(issue);
         }
         public int GetTotalNumberOfIssues(int ProjectId)
         {
@@ -144,11 +172,69 @@ namespace P6
         }
         public List<string> GetIssuesByMonth(int ProjectId)
         {
-            throw new NotImplementedException();
+
+            List<Issue> issues = GetAll(ProjectId);
+            List<string> results = new List<string>();
+
+            Dictionary<long, int> issuesByMonth = new Dictionary<long, int>();
+            int discoveries;
+            foreach (Issue issue in issues)
+            {
+                DateTime date = new DateTime(issue.DiscoveryDate.Year, issue.DiscoveryDate.Month, 1, 1, 1, 1);
+                long integerDate = date.Ticks;
+                discoveries = 1;
+                if (!issuesByMonth.ContainsKey(integerDate))
+                {
+                    issuesByMonth.Add(integerDate, discoveries);
+                }
+                else
+                {
+                    discoveries++;
+                    issuesByMonth[integerDate] += 1;
+
+                }
+            }
+
+            int i = 0;
+            foreach (KeyValuePair<long, int> pair in issuesByMonth)
+            {
+                i++;
+                DateTime date = new DateTime(pair.Key);
+                results.Add($"{date.Year} - {date.Month}: {pair.Value}");
+            }
+
+            return results;
         }
         public List<string> GetIssuesByDiscoverer(int ProjectId)
         {
-            throw new NotImplementedException();
+
+            List<Issue> issues = GetAll(ProjectId);
+            List<string> results = new List<string>();
+
+            Dictionary<string, int> issuesByDiscoverer = new Dictionary<string, int>();
+            int discoveries;
+            foreach (Issue issue in issues)
+            {
+                discoveries = 1;
+                if (!issuesByDiscoverer.ContainsKey(issue.Discoverer))
+                {
+                    issuesByDiscoverer.Add(issue.Discoverer, discoveries);
+                }
+                else
+                {
+                    discoveries++;
+                    issuesByDiscoverer[issue.Discoverer] += 1;
+
+                }
+            }
+
+            foreach (KeyValuePair<string, int> pair in issuesByDiscoverer)
+            {
+                string[] name = pair.Key.Split(' ');
+                results.Add($"{name[1]}, {name[0]}: {pair.Value}");
+            }
+
+            return results;
         }
         public Issue GetIssueById(int Id)
         {

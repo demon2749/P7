@@ -89,7 +89,9 @@ namespace P6
 
         private void issuesRecordToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            FormIssueRecord form = new FormIssueRecord(selectedProjectId);
+            form.ShowDialog();
+            form.Dispose();
         }
 
         private void issuesDashboardToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -102,12 +104,16 @@ namespace P6
 
         private void issuesModifyToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            FormIssueSelect form = new FormIssueSelect(this.selectedProjectId,"Modify");
+            form.ShowDialog();
+            form.Dispose();
         }
 
         private void issuesRemoveToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            FormIssueSelect form = new FormIssueSelect(this.selectedProjectId, "Remove");
+            form.ShowDialog();
+            form.Dispose();
         }
     }
 }
