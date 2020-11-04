@@ -13,15 +13,14 @@ namespace P6
         public const string EMPTY_DISCOVERY_DATETIME_ERROR = "Must select a Discovery Date/Time.";
         public const string FUTURE_DISCOVERY_DATETIME_ERROR = "Issues can't be from the future.";
         public const string EMPTY_DISCOVERER_ERROR = "A Discoverer is required.";
-        private static List<Issue> _Issues = new List<Issue>()
-        {
+        private static List<Issue> _Issues = new List<Issue>(){
             new Issue()
             {
                 Id = 1,
                 ProjectId = 1,
-                Title = "Title",
+                Title = "first issue",
                 DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
-                Discoverer = "First Last",
+                Discoverer = "Last, First",
                 InitialDescription = "Super duper super bug",
                 Component = "what is this?",
                 IssueStatusId = 1,
@@ -32,7 +31,7 @@ namespace P6
                 ProjectId = 1,
                 Title = "Big bug",
                 DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
-                Discoverer = "John Stampe",
+                Discoverer = "Stampe, John",
                 InitialDescription = "Super duper super bug",
                 Component = "what is this?",
                 IssueStatusId = 1,
@@ -43,7 +42,7 @@ namespace P6
                 ProjectId = 2,
                 Title = "program crash",
                 DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
-                Discoverer = "First Last",
+                Discoverer = "Last, First",
                 InitialDescription = "Super duper super bug",
                 Component = "what is this?",
                 IssueStatusId = 1,
@@ -230,8 +229,7 @@ namespace P6
 
             foreach (KeyValuePair<string, int> pair in issuesByDiscoverer)
             {
-                string[] name = pair.Key.Split(' ');
-                results.Add($"{name[1]}, {name[0]}: {pair.Value}");
+                results.Add($"{pair.Key}: {pair.Value}");
             }
 
             return results;
