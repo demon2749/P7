@@ -25,6 +25,7 @@ namespace P6
 
         private void FormIssueModify_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             textBoxId.Text = Convert.ToString(IssueToModify.Id);
             textBoxTitle.Text = IssueToModify.Title;
             datePickerDiscoveryDate.Value = IssueToModify.DiscoveryDate;
@@ -40,6 +41,7 @@ namespace P6
             }
             dropDownStatus.SelectedItem = _FakeIssueStatusRepository.GetValueById(IssueToModify.Id);
             textBoxDescription.Text = IssueToModify.InitialDescription;
+
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace P6
 
         private void FormIssueSelect_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             FillGrid();
         }
 
@@ -43,19 +44,11 @@ namespace P6
         private void dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             targetId = Int32.Parse(dataGrid.CurrentRow.Cells[0].Value.ToString());
-            /*
-             * This only selects the targetId if the user clicks on a box in the row.
-             * idk how to make it work when they select the row with the > on the left
-             * edge of the datagrid...
-             * Can we fix this? I Don't think its make or break, though.
-             * Below is a popup that tells you if the targetId got set
-             * 
-             * MessageBox.Show("Target Id: " + targetId.ToString(), "Debug");
-             */
         }
 
         private void buttonSelectIssue_Click(object sender, EventArgs e)
         {
+            targetId = Int32.Parse(dataGrid.CurrentRow.Cells[0].Value.ToString());
             if (targetId != 0)
             {
                 if (action == "Modify")

@@ -45,7 +45,7 @@ namespace P6
                     return issueStatus.Id;
                 }
             }
-            return 0;//should never happen.
+            return 0; //should never happen.
         }
         public string GetValueById(int Id)
         {
