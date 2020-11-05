@@ -17,8 +17,8 @@ namespace P6
         FakeIssueRepository _FakeIssueRepository = new FakeIssueRepository();
 
         int selectedProjectId;
-        string action;// Use this to either call the modify or the remove menu.
-        int targetId = 0;// Use this to specify which project is going to be modified or removed.
+        string action; // Use this to either call the modify or the remove menu.
+        int targetId = 0; // Use this to specify which project is going to be modified or removed.
 
         public FormIssueSelect(int Id, string action)
         {
@@ -56,15 +56,16 @@ namespace P6
 
         private void buttonSelectIssue_Click(object sender, EventArgs e)
         {
-            if(targetId != 0)
+            if (targetId != 0)
             {
-                if(action == "Modify")
+                if (action == "Modify")
                 {
                     FormIssueModify form = new FormIssueModify(targetId);
                     form.ShowDialog();
-                    form.Dispose();
+                    dataGrid.Rows.Clear();
+                    FillGrid();
                 }
-                if(action == "Remove")
+                if (action == "Remove")
                 {
                     if (MessageBox.Show("Are you sure you want to remove: " + _FakeIssueRepository.GetIssueById(targetId).Title, "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {

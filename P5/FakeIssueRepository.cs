@@ -20,7 +20,7 @@ namespace P6
                 ProjectId = 1,
                 Title = "first issue",
                 DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
-                Discoverer = "Last, First",
+                Discoverer = "Lawson, Payton",
                 InitialDescription = "Super duper super bug",
                 Component = "what is this?",
                 IssueStatusId = 1,
@@ -31,7 +31,7 @@ namespace P6
                 ProjectId = 1,
                 Title = "Big bug",
                 DiscoveryDate = new DateTime(2020, 1, 1, 1, 1, 1),
-                Discoverer = "Stampe, John",
+                Discoverer = "AAAA, AAA",
                 InitialDescription = "Super duper super bug",
                 Component = "what is this?",
                 IssueStatusId = 1,
@@ -49,7 +49,7 @@ namespace P6
             }
         };
 
-        private string ValidateIssue(Issue issue)
+        public string ValidateIssue(Issue issue)
         {
             if (issue.Title == "" || issue.Title == null)
             {

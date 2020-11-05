@@ -52,6 +52,7 @@
             this.textBoxComponent.Name = "textBoxComponent";
             this.textBoxComponent.Size = new System.Drawing.Size(320, 20);
             this.textBoxComponent.TabIndex = 33;
+            this.textBoxComponent.TextChanged += new System.EventHandler(this.textBoxComponent_TextChanged);
             // 
             // textBoxTitle
             // 
@@ -59,6 +60,7 @@
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.Size = new System.Drawing.Size(320, 20);
             this.textBoxTitle.TabIndex = 32;
+            this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
             // 
             // buttonCancel
             // 
@@ -69,6 +71,7 @@
             this.buttonCancel.TabIndex = 31;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonSubmit
             // 
@@ -77,8 +80,9 @@
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(104, 24);
             this.buttonSubmit.TabIndex = 30;
-            this.buttonSubmit.Text = "Create Issue";
+            this.buttonSubmit.Text = "Modify Issue";
             this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
             // textBoxDescription
             // 
@@ -88,6 +92,7 @@
             this.textBoxDescription.Size = new System.Drawing.Size(321, 220);
             this.textBoxDescription.TabIndex = 29;
             this.textBoxDescription.Text = "";
+            this.textBoxDescription.TextChanged += new System.EventHandler(this.textBoxDescription_TextChanged);
             // 
             // dropDownStatus
             // 
@@ -98,6 +103,7 @@
             this.dropDownStatus.Name = "dropDownStatus";
             this.dropDownStatus.Size = new System.Drawing.Size(321, 21);
             this.dropDownStatus.TabIndex = 28;
+            this.dropDownStatus.SelectedIndexChanged += new System.EventHandler(this.dropDownStatus_SelectedIndexChanged);
             // 
             // dropDownDiscoverer
             // 
@@ -108,6 +114,7 @@
             this.dropDownDiscoverer.Name = "dropDownDiscoverer";
             this.dropDownDiscoverer.Size = new System.Drawing.Size(321, 21);
             this.dropDownDiscoverer.TabIndex = 27;
+            this.dropDownDiscoverer.SelectedIndexChanged += new System.EventHandler(this.dropDownDiscoverer_SelectedIndexChanged);
             // 
             // datePickerDiscoveryDate
             // 
@@ -117,6 +124,7 @@
             this.datePickerDiscoveryDate.Name = "datePickerDiscoveryDate";
             this.datePickerDiscoveryDate.Size = new System.Drawing.Size(321, 20);
             this.datePickerDiscoveryDate.TabIndex = 26;
+            this.datePickerDiscoveryDate.ValueChanged += new System.EventHandler(this.datePickerDiscoveryDate_ValueChanged);
             // 
             // textBoxId
             // 
@@ -127,6 +135,7 @@
             this.textBoxId.ReadOnly = true;
             this.textBoxId.Size = new System.Drawing.Size(68, 20);
             this.textBoxId.TabIndex = 25;
+            this.textBoxId.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
             // 
             // label7
             // 
@@ -234,7 +243,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.RichTextBox textBoxDescription;
-        private System.Windows.Forms.ComboBox dropDownStatus;
         public System.Windows.Forms.ComboBox dropDownDiscoverer;
         private System.Windows.Forms.DateTimePicker datePickerDiscoveryDate;
         private System.Windows.Forms.TextBox textBoxId;
@@ -245,5 +253,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ComboBox dropDownStatus;
     }
 }
