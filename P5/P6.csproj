@@ -61,10 +61,13 @@
   <ItemGroup>
     <Compile Include="AppUser.cs" />
     <Compile Include="FakeAppUserRepository.cs" />
+    <Compile Include="FakeFeatureRepository.cs" />
     <Compile Include="FakeIssueRepository.cs" />
     <Compile Include="FakeIssueStatusRepository.cs" />
     <Compile Include="FakePreferenceRepository.cs" />
     <Compile Include="FakeProjectRepository.cs" />
+    <Compile Include="FakeRequirementRepository.cs" />
+    <Compile Include="Feature.cs" />
     <Compile Include="FormIssueModify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +81,7 @@
       <DependentUpon>FormIssueSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="IAppUserRepository.cs" />
+    <Compile Include="IFeatureRepository.cs" />
     <Compile Include="IIssueRepository.cs" />
     <Compile Include="IIssueStatusRepository.cs" />
     <Compile Include="IPreferenceRepository.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="FormModifyProject.Designer.cs">
       <DependentUpon>FormModifyProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="IRequirementRepository.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="FormIssueDashboard.cs">
       <SubType>Form</SubType>
@@ -136,6 +141,7 @@
     <Compile Include="FormIssueRecord.Designer.cs">
       <DependentUpon>FormIssueRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Requirement.cs" />
     <EmbeddedResource Include="FormIssueModify.resx">
       <DependentUpon>FormIssueModify.cs</DependentUpon>
     </EmbeddedResource>
