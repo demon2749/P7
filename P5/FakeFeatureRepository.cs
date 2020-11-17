@@ -35,7 +35,6 @@ namespace P6
             {
                 return EMPTY_TITLE_ERROR;
             }
-
             foreach(Feature feat in _Features)
             {
                 if(feat.Title == feature.Title)
@@ -47,23 +46,28 @@ namespace P6
                     return INVALID_PROJECT_ID_ERROR;
                 }
             }
-
             _Features.Add(feature);
             return NO_ERROR;
-
         }
         public List<Feature> GetAll(int ProjectId)
         {
-            List<Feature> tmp = new List<Feature>();
-
-            foreach (Feature feat in _Features)
+            if(ProjectId != 0)
             {
-                if (feat.ProjectId == ProjectId)
+                List<Feature> tmp = new List<Feature>();
+
+                foreach (Feature feat in _Features)
                 {
-                    tmp.Add(feat);
+                    if (feat.ProjectId == ProjectId)
+                    {
+                        tmp.Add(feat);
+                    }
                 }
+                return tmp;
             }
-            return tmp;
+            else
+            {
+                return _Features;
+            }
         }
         public string Remove(Feature feature)
         {
@@ -85,9 +89,7 @@ namespace P6
             {
                 return DUPLICATE_TITLE_ERROR;
             }
-
             int index = 0;
-
             foreach (Feature feat in _Features)
             {
                 if (feature.Id == feat.Id)
@@ -108,7 +110,6 @@ namespace P6
                     return feat;
                 }
             }
-
             throw new Exception();
         }
         public Feature GetFeatureByTitle(string title)
@@ -119,9 +120,7 @@ namespace P6
                 {
                     return feat;
                 }
-
             }
-
             throw new Exception();
         }
         private bool IsDupliclateTitle(string featureTitle)
@@ -135,6 +134,21 @@ namespace P6
                 }
             }
             return isDuplicate;
+        }
+
+        public int GetNextId()
+        {
+            int highest = 0;
+
+            foreach(Feature feat in _Features)
+            {
+                if(feat.Id > highest)
+                {
+                    highest = feat.Id;
+                }
+            }
+
+            return ++highest;
         }
     }
 }

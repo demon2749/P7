@@ -9,11 +9,11 @@ namespace P6
     public class FakeRequirementRepository : IRequirementRepository
     {
         public const string NO_ERROR = "";
-        public const string DUPLICATE_STATEMENT_ERROR = "";
-        public const string EMPTY_STATEMENT_ERROR = "";
-        public const string REQUIREMENT_NOT_FOUND_ERROR = "";
-        public const string MISSING_FEATUREID_ERROR = "";
-        public const string MISSING_PROJECTID_ERROR = "";
+        public const string DUPLICATE_STATEMENT_ERROR = "Statements must be unique";
+        public const string EMPTY_STATEMENT_ERROR = "Statement must have a value";
+        public const string REQUIREMENT_NOT_FOUND_ERROR = "Requirement Not Found Error";
+        public const string MISSING_FEATUREID_ERROR = "Missing FeatureId Error";
+        public const string MISSING_PROJECTID_ERROR = "Missing ProjectId Error";
 
         private static List<Requirement> _Requirements = new List<Requirement>();
 
@@ -28,27 +28,59 @@ namespace P6
             }
         }
 
-        public string Add(Requirement requirment)
+        public string Add(Requirement requirement)
         {
-            foreach(Requirement req in _Requirements)
+            requirement.Id = GetNextId();
+
+            foreach (Requirement req in _Requirements)
             {
-                if(req.Statement == requirment.Statement)
+                if (req.Statement == requirement.Statement)
                 {
                     return DUPLICATE_STATEMENT_ERROR;
-                }
-                else
+                }if(req.Id == requirement.Id)
                 {
-                    throw new NotImplementedException();
+                    throw new Exception();
+                    // How have you done this?
                 }
             }
-            
-            
-            _Requirements.Add(requirment);
 
+            if(requirement.Statement == "")
+            {
+                return EMPTY_STATEMENT_ERROR;
+            }
+            else if(requirement.ProjectId <= 0)
+            {
+                return MISSING_PROJECTID_ERROR;
+            }
+            else if(requirement.FeatureId <= 0)
+            {
+                return MISSING_FEATUREID_ERROR;
+            }
+            else
+            {
+                _Requirements.Add(requirement);
+                return NO_ERROR;
+            }
         }
         public List<Requirement> GetAll(int ProjectId)
         {
-            throw new NotImplementedException();
+            if (ProjectId != 0)
+            {
+                List<Requirement> tmp = new List<Requirement>();
+
+                foreach (Requirement req in _Requirements)
+                {
+                    if (req.ProjectId == ProjectId)
+                    {
+                        tmp.Add(req);
+                    }
+                }
+                return tmp;
+            }
+            else
+            {
+                return _Requirements;
+            }
         }
         public string Remove(Requirement requirement)
         {
@@ -109,13 +141,17 @@ namespace P6
 
             return count;
         }
-        public void RemoveByFeatureId(int featureId)
+        public void RemoveByFeatureId(int featureId) // This function SHOULD remove ALL requirements with the provided feature id.
         {
-            foreach(Requirement req in _Requirements)
+            for(int i = CountByFeatureId(featureId); i!=0; i--)
             {
-                if(req.FeatureId == featureId)
+                foreach (Requirement req in _Requirements)
                 {
-                    Remove(req);
+                    if (req.FeatureId == featureId)
+                    {
+                        Remove(req);
+                        break;
+                    }
                 }
             }
         }
@@ -131,6 +167,20 @@ namespace P6
                 }
             }
             return isDuplicate;
+        }
+        public int GetNextId()
+        {
+            int highest = 0;
+
+            foreach (Requirement req in _Requirements)
+            {
+                if (req.Id > highest)
+                {
+                    highest = req.Id;
+                }
+            }
+
+            return ++highest;
         }
     }
 }

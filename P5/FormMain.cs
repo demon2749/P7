@@ -115,5 +115,26 @@ namespace P6
             form.ShowDialog();
             form.Dispose();
         }
+
+        private void createToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormFeatureCreate form = new FormFeatureCreate(this.selectedProjectId);
+            form.ShowDialog();
+            form.Dispose();
+        }
+
+        private void modifyToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormFeatureSelect form = new FormFeatureSelect(this.selectedProjectId, "Modify");
+            form.ShowDialog();
+            form.Dispose();
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormFeatureSelect form = new FormFeatureSelect(this.selectedProjectId, "Remove");
+            form.ShowDialog();
+            form.Dispose();
+        }
     }
 }
