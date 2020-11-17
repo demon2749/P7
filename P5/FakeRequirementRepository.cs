@@ -30,7 +30,21 @@ namespace P6
 
         public string Add(Requirement requirment)
         {
-            throw new NotImplementedException();
+            foreach(Requirement req in _Requirements)
+            {
+                if(req.Statement == requirment.Statement)
+                {
+                    return DUPLICATE_STATEMENT_ERROR;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            
+            
+            _Requirements.Add(requirment);
+
         }
         public List<Requirement> GetAll(int ProjectId)
         {
@@ -38,24 +52,85 @@ namespace P6
         }
         public string Remove(Requirement requirement)
         {
-            throw new NotImplementedException();
+            foreach (Requirement req in _Requirements)
+            {
+                if (req == requirement)
+                {
+                    _Requirements.Remove(requirement);
+                    return NO_ERROR;
+                }
+            }
+            return REQUIREMENT_NOT_FOUND_ERROR;
         }
         public string Modify(Requirement requirement)
         {
-            throw new NotImplementedException();
+
+            if(IsDupliclateStatement(requirement.Statement))
+            {
+                return DUPLICATE_STATEMENT_ERROR;
+            }
+
+            int index = 0;
+
+            foreach(Requirement req in _Requirements)
+            {
+                if(requirement.Id == req.Id)
+                {
+                    _Requirements[index] = requirement;
+                    return NO_ERROR;
+                }
+                index++;
+            }
+            return REQUIREMENT_NOT_FOUND_ERROR;
         }
         public Requirement GetRequirementById(int requirementId)
         {
-            throw new NotImplementedException();
+            foreach(Requirement req in _Requirements)
+            {
+                if(req.Id == requirementId)
+                {
+                    return req;
+                }
+            }
+
+            throw new Exception();
         }
         public int CountByFeatureId(int featureId)
         {
-            throw new NotImplementedException();
+            int count = 0;
+
+            foreach (Requirement req in _Requirements)
+            {
+                if (req.FeatureId == featureId)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
         public void RemoveByFeatureId(int featureId)
         {
-            throw new NotImplementedException();
+            foreach(Requirement req in _Requirements)
+            {
+                if(req.FeatureId == featureId)
+                {
+                    Remove(req);
+                }
+            }
         }
 
+        private bool IsDupliclateStatement(string requirementStatement)
+        {
+            bool isDuplicate = false;
+            foreach (Requirement req in _Requirements)
+            {
+                if (requirementStatement == req.Statement)
+                {
+                    isDuplicate = true;
+                }
+            }
+            return isDuplicate;
+        }
     }
 }

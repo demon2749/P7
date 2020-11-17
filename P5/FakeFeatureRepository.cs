@@ -10,12 +10,13 @@ namespace P6
     {
 
         public const string NO_ERROR = "";
-        public const string DUPLICATE_TITLE_ERROR = "";
-        public const string EMPTY_TITLE_ERROR = "";
-        public const string NOT_FOUND_ERROR = "";
-        public const string INVALID_PROJECT_ID_ERROR = "";
+        public const string DUPLICATE_TITLE_ERROR = "Title must be unique.";
+        public const string EMPTY_TITLE_ERROR = "Title must have a value";
+        public const string NOT_FOUND_ERROR = "Not Found Error.";
+        public const string INVALID_PROJECT_ID_ERROR = "Invalid Project ID Error.";
 
         private static List<Feature> _Features = new List<Feature>();
+        FakeRequirementRepository _FakeRequirementRepository = new FakeRequirementRepository();
 
         public FakeFeatureRepository()
         {
@@ -30,28 +31,110 @@ namespace P6
 
         public string Add(Feature feature)
         {
-            throw new NotImplementedException();
+            if(feature.Title == "")
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+
+            foreach(Feature feat in _Features)
+            {
+                if(feat.Title == feature.Title)
+                {
+                    return DUPLICATE_TITLE_ERROR;
+                }
+                if(feat.Id == feature.Id)
+                {
+                    return INVALID_PROJECT_ID_ERROR;
+                }
+            }
+
+            _Features.Add(feature);
+            return NO_ERROR;
+
         }
         public List<Feature> GetAll(int ProjectId)
         {
-            throw new NotImplementedException();
+            List<Feature> tmp = new List<Feature>();
+
+            foreach (Feature feat in _Features)
+            {
+                if (feat.ProjectId == ProjectId)
+                {
+                    tmp.Add(feat);
+                }
+            }
+            return tmp;
         }
         public string Remove(Feature feature)
         {
-            throw new NotImplementedException();
+            foreach (Feature feat in _Features)
+            {
+                if(feat.Id == feature.Id)
+                {
+                    _Features.Remove(feat);
+                    _FakeRequirementRepository.RemoveByFeatureId(feat.Id); // removes corresponding req's when feature is removed.
+                    return NO_ERROR;
+                }
+            }
+            return NOT_FOUND_ERROR;
         }
         public string Modify(Feature feature)
         {
-            throw new NotImplementedException();
+
+            if (IsDupliclateTitle(feature.Title))
+            {
+                return DUPLICATE_TITLE_ERROR;
+            }
+
+            int index = 0;
+
+            foreach (Feature feat in _Features)
+            {
+                if (feature.Id == feat.Id)
+                {
+                    _Features[index] = feature;
+                    return NO_ERROR;
+                }
+                index++;
+            }
+            return NOT_FOUND_ERROR;
         }
         public Feature GetFeatureById(int featureId)
         {
-            throw new NotImplementedException();
+            foreach(Feature feat in _Features)
+            {
+                if(feat.Id == featureId)
+                {
+                    return feat;
+                }
+            }
+
+            throw new Exception();
         }
         public Feature GetFeatureByTitle(string title)
         {
-            throw new NotImplementedException();
-        }
+            foreach(Feature feat in _Features)
+            {
+                if(feat.Title == title)
+                {
+                    return feat;
+                }
 
+            }
+
+            throw new Exception();
+        }
+        private bool IsDupliclateTitle(string featureTitle)
+        {
+            bool isDuplicate = false;
+            foreach (Feature feat in _Features)
+            {
+                if (featureTitle == feat.Title)
+                {
+                    isDuplicate = true;
+                }
+            }
+            return isDuplicate;
+        }
     }
 }
