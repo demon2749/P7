@@ -104,6 +104,12 @@
     <Compile Include="FormRequirementCreate.Designer.cs">
       <DependentUpon>FormRequirementCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRequirementSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequirementSelect.Designer.cs">
+      <DependentUpon>FormRequirementSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="IAppUserRepository.cs" />
     <Compile Include="IFeatureRepository.cs" />
     <Compile Include="IIssueRepository.cs" />
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRequirementCreate.resx">
       <DependentUpon>FormRequirementCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequirementSelect.resx">
+      <DependentUpon>FormRequirementSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectProject.resx">
       <DependentUpon>FormSelectProject.cs</DependentUpon>

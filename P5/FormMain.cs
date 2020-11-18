@@ -144,9 +144,11 @@ namespace P6
             form.Dispose();
         }
 
-        private void modifyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void modifyRequirementToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            FormRequirementSelect form = new FormRequirementSelect(this.selectedProjectId);
+            form.ShowDialog();
+            form.Dispose();
         }
 
         private void removeToolStripMenuItem_Click(object sender, System.EventArgs e)
