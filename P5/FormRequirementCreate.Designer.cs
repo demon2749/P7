@@ -46,12 +46,12 @@
             // 
             // dropDownFeatures
             // 
-            this.dropDownFeatures.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dropDownFeatures.FormattingEnabled = true;
             this.dropDownFeatures.Location = new System.Drawing.Point(214, 69);
             this.dropDownFeatures.Name = "dropDownFeatures";
             this.dropDownFeatures.Size = new System.Drawing.Size(739, 28);
             this.dropDownFeatures.TabIndex = 32;
+            this.dropDownFeatures.Text = "<Make Selection>";
             this.dropDownFeatures.TextChanged += new System.EventHandler(this.dropDownFeatures_TextChanged);
             // 
             // label5

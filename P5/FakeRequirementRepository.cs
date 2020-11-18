@@ -97,7 +97,7 @@ namespace P6
         public string Modify(Requirement requirement)
         {
 
-            if(IsDupliclateStatement(requirement.Statement))
+            if(IsDupliclateStatement(requirement.Statement, requirement.Id))
             {
                 return DUPLICATE_STATEMENT_ERROR;
             }
@@ -156,11 +156,16 @@ namespace P6
             }
         }
 
-        private bool IsDupliclateStatement(string requirementStatement)
+        private bool IsDupliclateStatement(string requirementStatement, int? ignoreId = null)
         {
             bool isDuplicate = false;
             foreach (Requirement req in _Requirements)
             {
+                if(ignoreId != null && ignoreId == req.Id)
+                {
+                    continue;
+                }
+
                 if (requirementStatement == req.Statement)
                 {
                     isDuplicate = true;

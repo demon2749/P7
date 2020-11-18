@@ -16,7 +16,6 @@ namespace P6
         private FakeRequirementRepository _FakeRequirementRepository = new FakeRequirementRepository();
         int activeProjectId;
 
-        string defaultDropDownValue = "<Make Selection>";
 
         public enum ActionTypes
         {
@@ -35,19 +34,24 @@ namespace P6
 
             this.action = action;
 
-            this.modifyRequirement = requirement;
+            if(requirement != null)
+            {
+                this.modifyRequirement = requirement;
+            }
         }
 
         public void fillDropDown()
         {
-            // Default Value
-            this.dropDownFeatures.Items.Add(defaultDropDownValue);
-            this.dropDownFeatures.SelectedIndex = this.dropDownFeatures.Items.IndexOf(defaultDropDownValue);
-
             List<Feature> features = _FakeFeatureRepository.GetAll(this.activeProjectId);
             foreach (Feature feature in features)
             {
                 dropDownFeatures.Items.Add(feature.Title);
+            }
+
+            if (action == ActionTypes.Modify)
+            {
+                Feature requirementFeature = _FakeFeatureRepository.GetFeatureById(modifyRequirement.FeatureId);
+                this.dropDownFeatures.SelectedIndex = dropDownFeatures.Items.IndexOf(requirementFeature.Title);
             }
 
         }
@@ -60,7 +64,7 @@ namespace P6
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             // Statement cannot be blank
-            if(textBoxStatement.Text == this.defaultDropDownValue)
+            if(textBoxStatement.Text == "")
             {
                 MessageBox.Show("Statement must have a value.", "Attention.");
                 return;
@@ -108,12 +112,19 @@ namespace P6
             this.CenterToParent();
             this.buttonSubmit.Enabled = false;
             fillDropDown();
-            this.textBoxStatement.Enabled = false;
+            this.textBoxStatement.Enabled = dropDownFeatures.Text != "<Make Selection>";
+
+            this.buttonSubmit.Text = (action == ActionTypes.Create ? ActionTypes.Create.ToString() : ActionTypes.Modify.ToString()) + " Requirement";
+
+            if(action == ActionTypes.Modify)
+            {
+                this.textBoxStatement.Text = this.modifyRequirement.Statement;
+            }
         }
 
         private void dropDownFeatures_TextChanged(object sender, EventArgs e)
         {
-            bool textBoxItemSelected = dropDownFeatures.Text != this.defaultDropDownValue;
+            bool textBoxItemSelected = dropDownFeatures.Text != "<Make Selection>";
             this.textBoxStatement.Enabled = textBoxItemSelected;
             this.buttonSubmit.Enabled = textBoxItemSelected;
 
