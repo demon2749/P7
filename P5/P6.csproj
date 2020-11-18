@@ -98,6 +98,12 @@
     <Compile Include="FormIssueSelect.Designer.cs">
       <DependentUpon>FormIssueSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRequirementCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequirementCreate.Designer.cs">
+      <DependentUpon>FormRequirementCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="IAppUserRepository.cs" />
     <Compile Include="IFeatureRepository.cs" />
     <Compile Include="IIssueRepository.cs" />
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRemoveProject.resx">
       <DependentUpon>FormRemoveProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequirementCreate.resx">
+      <DependentUpon>FormRequirementCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectProject.resx">
       <DependentUpon>FormSelectProject.cs</DependentUpon>
